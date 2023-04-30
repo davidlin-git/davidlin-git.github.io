@@ -1,0 +1,76 @@
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: -webkit-fill-available;
+}
+
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#button-search {
+    min-width: 80px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.table th {
+  vertical-align: middle;
+}
+
+.table > caption{
+    font-size: x-large;
+}
+
+.table > thead.bg-secondary{
+    --bs-bg-opacity: .25;
+}
+
+@media screen and (min-width: 1000px) {
+.table tr > *:nth-child(1) { width: 10%; }
+.table tr > *:nth-child(2) { width: 20%; }
+.table tr > *:nth-child(3) { width: 10%; }
+.table tr > *:nth-child(4) { width: 10%; }
+.table tr > *:nth-child(5) { width: 10%; }
+.table tr > *:nth-child(6) { width: 40%; }
+}
+
+table tr > td:nth-child(5){
+  text-align: right;
+  padding-right: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+img.icon-shop {
+    width: 50px;
+}
+
+@media screen and (min-width: 1000px) {
+  img.icon-item {
+    width: 40px;
+}}
+
+@media screen and (max-width: 1000px) {
+  img.icon-item {
+    width: 25px;
+}}
+
+#gotop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
