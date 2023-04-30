@@ -16,13 +16,13 @@
         <h2 style="text-align: center;">幻獣物語２ トレードショップ</h2>
     </div>
     <div class="container-fluid">
-        <form class="d-flex">
+        <form class="d-flex" onSubmit="return false">
             <div class="input-group mb-3">
                 <input id="input-search" type="text" class="form-control" placeholder="Search For Item.."
                     aria-label="Search Item" aria-describedby="button-search">
                 <button class="btn btn-outline-primary" type="button" id="button-search"
                     onclick="filterItem()">過濾</button>
-                    <button class="btn btn-outline-secondary" type="button" id="button-clear"
+                <button class="btn btn-outline-secondary" type="button" id="button-clear"
                     onclick="filterClear()">清除</button>
             </div>
         </form>
@@ -2563,5 +2563,18 @@
 
 </body>
 
-
+<script>
+    // Get the input field
+    var txtInput = document.getElementById("input-search");
+    // Execute a function when the user presses a key on the keyboard
+    txtInput.addEventListener("keypress", function (event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("button-search").click();
+        }
+    });
+</script>
 </html>
