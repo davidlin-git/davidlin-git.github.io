@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="style/genmono.css" rel="stylesheet">
+    <script src="script/genmono.js" lang="javascript"></script>
+    <title>幻獣物語２ トレードショップ</title>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 20px;margin-bottom: 20px;">
+        <h2 style="text-align: center;">幻獣物語２ トレードショップ</h2>
+    </div>
+    <div class="container-fluid">
+        <form class="d-flex">
+            <div class="input-group mb-3">
+                <input id="input-search" type="text" class="form-control" placeholder="Search For Item.."
+                    aria-label="Search Item" aria-describedby="button-search">
+                <button class="btn btn-outline-primary" type="button" id="button-search"
+                    onclick="filterItem()">過濾</button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-clear"
+                    onclick="filterClear()">清除</button>
+            </div>
+        </form>
+        <span id="filter-result"></span>
+    </div>
+    <!-- empty block -->
+    <div style="margin-bottom: 12px;"></div>
+
+    <!-- 通常ショップ -->
+    <div class="container-fluid">
+        <h3>通常ショップ</h3>
+        <!--きのこなお店-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="きのこなお店.png" src="img/gen2/%E3%81%8D%E3%81%AE%E3%81%93%E3%81%AA%E3%81%8A%E5%BA%97.png"
+                        class="icon-shop">きのこなお店
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <img alt="木の棒.png" src="img/gen2/%E6%9C%A8%E3%81%AE%E6%A3%92.png" class="icon-item">
+                    </td>
+                    <td>木の棒</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>200</td>
+                    <td>石ころ x3<br>
+                        鉄のかけら x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="布のシャツ.png" src="img/gen2/%E5%B8%83%E3%81%AE%E3%82%B7%E3%83%A3%E3%83%84.png"
+                            class="icon-item">
+                    </td>
+                    <td>布のシャツ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>200</td>
+                    <td>ぼろい布 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鉄製の弓.png" src="img/gen2/%E9%89%84%E8%A3%BD%E3%81%AE%E5%BC%93.png" class="icon-item">
+                    </td>
+                    <td>鉄製の弓</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>300</td>
+                    <td>鉄のかけら x3<br>
+                        丈夫な紐 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鍋のふた.png" src="img/gen2/%E9%8D%8B%E3%81%AE%E3%81%B5%E3%81%9F.png" class="icon-item">
+                    </td>
+                    <td>鍋のふた</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>300</td>
+                    <td>丈夫な紐 x3<br>
+                        濃厚粘土 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="アイスピック.png" src="img/gen2/%E3%82%A2%E3%82%A4%E3%82%B9%E3%83%94%E3%83%83%E3%82%AF.png"
+                            class="icon-item">
+                    </td>
+                    <td>アイスピック</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>500</td>
+                    <td>切りたて丸太 x3<br>
+                        濃厚粘土 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="作業用シューズ.png"
+                            src="img/gen2/%E4%BD%9C%E6%A5%AD%E7%94%A8%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>作業用シューズ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>500</td>
+                    <td>ぼろい布 x10<br>
+                        朱色の玉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="GPT500.png" src="img/gen2/GPT500.png" class="icon-item">
+                    </td>
+                    <td>GPT500</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>100</td>
+                    <td>オークションの槌 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鉄のかけら.png" src="img/gen2/%E9%89%84%E3%81%AE%E3%81%8B%E3%81%91%E3%82%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>鉄のかけら</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100</td>
+                    <td>石ころ x10</td>
+                </tr>
+            </table>
+        </div>
+        <!--チーズオブラブ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="チーズオブラブ.png"
+                        src="img/gen2/%E3%83%81%E3%83%BC%E3%82%BA%E3%82%AA%E3%83%96%E3%83%A9%E3%83%96.png"
+                        class="icon-shop">
+                    チーズオブラブ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <img alt="果物ナイフ.png" src="img/gen2/%E6%9E%9C%E7%89%A9%E3%83%8A%E3%82%A4%E3%83%95.png"
+                            class="icon-item">
+                    </td>
+                    <td>果物ナイフ</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>鉄のかけら x10<br>
+                        朱色の玉 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="清潔なグローブ.png"
+                            src="img/gen2/%E6%B8%85%E6%BD%94%E3%81%AA%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>清潔なグローブ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>蒸留水 x7<br>
+                        硬い羽根 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="つるはし.png" src="img/gen2/%E3%81%A4%E3%82%8B%E3%81%AF%E3%81%97.png" class="icon-item">
+                    </td>
+                    <td>つるはし</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>1,400</td>
+                    <td>丈夫な紐 x1<br>
+                        鋼鉄のかけら x1<br>
+                        アイスピック x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="おしゃれシャツ.png"
+                            src="img/gen2/%E3%81%8A%E3%81%97%E3%82%83%E3%82%8C%E3%82%B7%E3%83%A3%E3%83%84.png"
+                            class="icon-item">
+                    </td>
+                    <td>おしゃれシャツ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>1,400</td>
+                    <td>朱色の玉 x10<br>
+                        布のシャツ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ロックボウ.png" src="img/gen2/%E3%83%AD%E3%83%83%E3%82%AF%E3%83%9C%E3%82%A6.png"
+                            class="icon-item">
+                    </td>
+                    <td>ロックボウ</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>2,000</td>
+                    <td>砥石 x2<br>
+                        鋼鉄のかけら x2<br>
+                        鉄製の弓 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="グッドシューズ.png"
+                            src="img/gen2/%E3%82%B0%E3%83%83%E3%83%89%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>グッドシューズ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>2,000</td>
+                    <td>硬い羽根 x8<br>
+                        どこかのネジ x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="げんこつ斧.png" src="img/gen2/%E3%81%92%E3%82%93%E3%81%93%E3%81%A4%E6%96%A7.png"
+                            class="icon-item">
+                    </td>
+                    <td>げんこつ斧</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>3,500</td>
+                    <td>どこかのネジ x3<br>
+                        良質な木材 x1<br>
+                        つるはし x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白装束.png" src="img/gen2/%E7%99%BD%E8%A3%85%E6%9D%9F.png" class="icon-item">
+                    </td>
+                    <td>白装束</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>2,200</td>
+                    <td>魔法の液 x1<br>
+                        清潔なグローブ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="魔法の液.png" src="img/gen2/%E9%AD%94%E6%B3%95%E3%81%AE%E6%B6%B2.png" class="icon-item">
+                    </td>
+                    <td>魔法の液</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>500</td>
+                    <td>蒸留水 x12<br>
+                        魔法の実 x5</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="良質な木材.png" src="img/gen2/%E8%89%AF%E8%B3%AA%E3%81%AA%E6%9C%A8%E6%9D%90.png"
+                            class="icon-item">
+                    </td>
+                    <td>良質な木材</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>500</td>
+                    <td>丈夫な紐 x10<br>
+                        切りたて丸太 x12</td>
+                </tr>
+            </table>
+        </div>
+        <!--木陰雑貨店-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="木陰雑貨店.png" src="img/gen2/%E6%9C%A8%E9%99%B0%E9%9B%91%E8%B2%A8%E5%BA%97.png"
+                        class="icon-shop">
+                    木陰雑貨店
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <img alt="魔法使いの杖.png" src="img/gen2/%E9%AD%94%E6%B3%95%E4%BD%BF%E3%81%84%E3%81%AE%E6%9D%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>魔法使いの杖</td>
+                    <td>武器</td>
+                    <td>回復</td>
+                    <td>3,600</td>
+                    <td>魔法の液 x3<br>
+                        良質な木材 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="魔法使いの帽子.png"
+                            src="img/gen2/%E9%AD%94%E6%B3%95%E4%BD%BF%E3%81%84%E3%81%AE%E5%B8%BD%E5%AD%90.png"
+                            class="icon-item">
+                    </td>
+                    <td>魔法使いの帽子</td>
+                    <td>防具</td>
+                    <td>成長</td>
+                    <td>3,600</td>
+                    <td>魔法の液 x3<br>
+                        百合の葉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ナイフグローブ.png"
+                            src="img/gen2/%E3%83%8A%E3%82%A4%E3%83%95%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>ナイフグローブ</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>4,000</td>
+                    <td>銀のかけら x2<br>
+                        果物ナイフ x1<br>
+                        清潔なグローブ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="さすらいマント.png"
+                            src="img/gen2/%E3%81%95%E3%81%99%E3%82%89%E3%81%84%E3%83%9E%E3%83%B3%E3%83%88.png"
+                            class="icon-item">
+                    </td>
+                    <td>さすらいマント</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>4,000</td>
+                    <td>絶妙焼き魚 x3<br>
+                        幻獣のしっぽ x1<br>
+                        おしゃれシャツ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="アイスボウ.png" src="img/gen2/%E3%82%A2%E3%82%A4%E3%82%B9%E3%83%9C%E3%82%A6.png"
+                            class="icon-item">
+                    </td>
+                    <td>アイスボウ</td>
+                    <td>武器</td>
+                    <td>凍結</td>
+                    <td>7,000</td>
+                    <td>クリスタル x2<br>
+                        良質な魔法液 x2<br>
+                        氷の結晶 x1<br>
+                        ロックボウ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="頑丈なグローブ.png"
+                            src="img/gen2/%E9%A0%91%E4%B8%88%E3%81%AA%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>頑丈なグローブ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>4,500</td>
+                    <td>幻獣のしっぽ x2<br>
+                        深紅の羽根 x1<br>
+                        清潔なグローブ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="勇者の剣.png" src="img/gen2/%E5%8B%87%E8%80%85%E3%81%AE%E5%89%A3.png" class="icon-item">
+                    </td>
+                    <td>勇者の剣</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>6,000</td>
+                    <td>四葉のクローバー x1<br>
+                        けものこまち x1<br>
+                        果物ナイフ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="勇者の盾.png" src="img/gen2/%E5%8B%87%E8%80%85%E3%81%AE%E7%9B%BE.png" class="icon-item">
+                    </td>
+                    <td>勇者の盾</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>6,000</td>
+                    <td>四葉のクローバー x1<br>
+                        けものこまち x1<br>
+                        鍋のふた x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="隠れ郷への招待状.png"
+                            src="img/gen2/%E9%9A%A0%E3%82%8C%E9%83%B7%E3%81%B8%E3%81%AE%E6%8B%9B%E5%BE%85%E7%8A%B6.png"
+                            class="icon-item">
+                    </td>
+                    <td>隠れ郷への招待状</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>150,000</td>
+                    <td>幻獣のしっぽ x10<br>
+                        妖精の忘れ物 x20<br>
+                        煌く金属片 x20</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="良質な魔法液.png" src="img/gen2/%E8%89%AF%E8%B3%AA%E3%81%AA%E9%AD%94%E6%B3%95%E6%B6%B2.png"
+                            class="icon-item">
+                    </td>
+                    <td>良質な魔法液</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>1,500</td>
+                    <td>鉄のかけら x10<br>
+                        魔法の液 x1<br>
+                        クリスタル x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="活性剤.png" src="img/gen2/%E6%B4%BB%E6%80%A7%E5%89%A4.png" class="icon-item">
+                    </td>
+                    <td>活性剤</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>2,000</td>
+                    <td>百合の葉 x5<br>
+                        幻獣ミルク x10<br>
+                        幻獣のしっぽ x2<br>
+                        向日葵 x1</td>
+                </tr>
+            </table>
+        </div>
+        <!--工場跡地のお店-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="工場跡地のお店.png"
+                        src="img/gen2/%E5%B7%A5%E5%A0%B4%E8%B7%A1%E5%9C%B0%E3%81%AE%E3%81%8A%E5%BA%97.png"
+                        class="icon-shop">
+                    工場跡地のお店
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <img alt="重い槍.png" src="img/gen2/%E9%87%8D%E3%81%84%E6%A7%8D.png" class="icon-item">
+                    </td>
+                    <td>重い槍</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>6,500</td>
+                    <td>深紅の羽根 x1<br>
+                        鋼鉄の塊 x2<br>
+                        金のかけら x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="神職装束.png" src="img/gen2/%E7%A5%9E%E8%81%B7%E8%A3%85%E6%9D%9F.png" class="icon-item">
+                    </td>
+                    <td>神職装束</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>6,500</td>
+                    <td>絶妙焼き魚 x5<br>
+                        封印のお札 x1<br>
+                        白装束 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="レイピア.png" src="img/gen2/%E3%83%AC%E3%82%A4%E3%83%94%E3%82%A2.png" class="icon-item">
+                    </td>
+                    <td>レイピア</td>
+                    <td>武器</td>
+                    <td>五雨</td>
+                    <td>30,000</td>
+                    <td>鋼鉄の塊 x1<br>
+                        雨の結晶 x1<br>
+                        勇者の剣 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ブラックローブ.png"
+                            src="img/gen2/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>ブラックローブ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>7,000</td>
+                    <td>良質な魔法液 x2<br>
+                        雨の結晶 x1<br>
+                        約束の指輪 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="かまいたち.png" src="img/gen2/%E3%81%8B%E3%81%BE%E3%81%84%E3%81%9F%E3%81%A1.png"
+                            class="icon-item">
+                    </td>
+                    <td>かまいたち</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>8,000</td>
+                    <td>鋼鉄の塊 x2<br>
+                        風の結晶 x1<br>
+                        つるはし x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ナイトグローブ.png"
+                            src="img/gen2/%E3%83%8A%E3%82%A4%E3%83%88%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>ナイトグローブ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>75,000</td>
+                    <td>金のかけら x1<br>
+                        虚言の実 x1<br>
+                        頑丈なグローブ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="気合いの鉢巻.png" src="img/gen2/%E6%B0%97%E5%90%88%E3%81%84%E3%81%AE%E9%89%A2%E5%B7%BB.png"
+                            class="icon-item">
+                    </td>
+                    <td>気合いの鉢巻</td>
+                    <td>武器</td>
+                    <td>猛突</td>
+                    <td>46,000</td>
+                    <td>良質な魔法液 x2<br>
+                        火の結晶 x1<br>
+                        虚言の実 x2<br>
+                        深紅の柔毛 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="純真エプロン.png" src="img/gen2/%E7%B4%94%E7%9C%9F%E3%82%A8%E3%83%97%E3%83%AD%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>純真エプロン</td>
+                    <td>防具</td>
+                    <td>無属防</td>
+                    <td>32,000</td>
+                    <td>良質な魔法液 x2<br>
+                        氷の結晶 x1<br>
+                        虚言の実 x2<br>
+                        深紅の柔毛 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="対魔の閃光.png" src="img/gen2/%E5%AF%BE%E9%AD%94%E3%81%AE%E9%96%83%E5%85%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>対魔の閃光</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>40,000</td>
+                    <td>雨の結晶 x3<br>
+                        風の結晶 x3<br>
+                        白露の光り x6</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鋼鉄の塊.png" src="img/gen2/%E9%8B%BC%E9%89%84%E3%81%AE%E5%A1%8A.png" class="icon-item">
+                    </td>
+                    <td>鋼鉄の塊</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>500</td>
+                    <td>丈夫な紐 x5<br>
+                        鋼鉄のかけら x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="深紅の柔毛.png" src="img/gen2/%E6%B7%B1%E7%B4%85%E3%81%AE%E6%9F%94%E6%AF%9B.png"
+                            class="icon-item">
+                    </td>
+                    <td>深紅の柔毛</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>3,000</td>
+                    <td>幻獣のしっぽ x3<br>
+                        深紅の羽根 x7<br>
+                        金のかけら x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="黄金の延べ棒.png" src="img/gen2/%E9%BB%84%E9%87%91%E3%81%AE%E5%BB%B6%E3%81%B9%E6%A3%92.png"
+                            class="icon-item">
+                    </td>
+                    <td>黄金の延べ棒</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>金のかけら x55<br>
+                        炎と闇 x5</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白銀の延べ棒.png" src="img/gen2/%E7%99%BD%E9%8A%80%E3%81%AE%E5%BB%B6%E3%81%B9%E6%A3%92.png"
+                            class="icon-item">
+                    </td>
+                    <td>白銀の延べ棒</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>銀のかけら x55<br>
+                        炎と闇 x5</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鋼鉄の延べ棒.png" src="img/gen2/%E9%8B%BC%E9%89%84%E3%81%AE%E5%BB%B6%E3%81%B9%E6%A3%92.png"
+                            class="icon-item">
+                    </td>
+                    <td>鋼鉄の延べ棒</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>鋼鉄のかけら x55<br>
+                        炎と闇 x5</td>
+                </tr>
+            </table>
+        </div>
+        <!--ピラミッドパワー-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="ピラミッドパワー.png"
+                        src="img/gen2/%E3%83%94%E3%83%A9%E3%83%9F%E3%83%83%E3%83%89%E3%83%91%E3%83%AF%E3%83%BC.png"
+                        class="icon-shop">
+                    ピラミッドパワー
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="マジックスタッフ.png"
+                            src="img/gen2/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95.png"
+                            class="icon-item">
+                    </td>
+                    <td>マジックスタッフ</td>
+                    <td>武器</td>
+                    <td>癒唄</td>
+                    <td>30,000</td>
+                    <td>良質な魔法液 x1<br>
+                        封印のお札 x2<br>
+                        魔法使いの杖 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="空手衣.png" src="img/gen2/%E7%A9%BA%E6%89%8B%E8%A1%A3.png" class="icon-item">
+                    </td>
+                    <td>空手衣</td>
+                    <td>防具</td>
+                    <td>習熟</td>
+                    <td>100,000</td>
+                    <td>封印の御札 x8<br>
+                        伍老花 x2<br>
+                        地盤ドロップ x1<br>
+                        おしゃれシャツ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="アイスサイズ.png" src="img/gen2/%E3%82%A2%E3%82%A4%E3%82%B9%E3%82%B5%E3%82%A4%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>アイスサイズ</td>
+                    <td>武器</td>
+                    <td>凍結</td>
+                    <td>45,000</td>
+                    <td>銀の塊 x1<br>
+                        千年樹の片木 x1<br>
+                        雪と氷 x1<br>
+                        かまいたち x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ハードアーマー.png"
+                            src="img/gen2/%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A2%E3%83%BC%E3%83%9E%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>ハードアーマー</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>12,000</td>
+                    <td>銀のかけら x2<br>
+                        鋼鉄の塊 x2<br>
+                        ブラックローブ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="メガアックス.png" src="img/gen2/%E3%83%A1%E3%82%AC%E3%82%A2%E3%83%83%E3%82%AF%E3%82%B9.png"
+                            class="icon-item">
+                    </td>
+                    <td>メガアックス</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>16,000</td>
+                    <td>虚言の実 x3<br>
+                        精密歯車 x1<br>
+                        げんこつ斧 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="グレイトアーマー.png"
+                            src="img/gen2/%E3%82%B0%E3%83%AC%E3%82%A4%E3%83%88%E3%82%A2%E3%83%BC%E3%83%9E%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>グレイトアーマー</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>16,000</td>
+                    <td>どこかのネジ x5<br>
+                        精密歯車 x1<br>
+                        ハードアーマー x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="日本刀.png" src="img/gen2/%E6%97%A5%E6%9C%AC%E5%88%80.png" class="icon-item">
+                    </td>
+                    <td>日本刀</td>
+                    <td>武器</td>
+                    <td>一斉</td>
+                    <td>200,000</td>
+                    <td>良質な魔法液 x3<br>
+                        銀の塊 x2<br>
+                        千年樹の片木 x1<br>
+                        魔水晶のかけら x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="正義の盾.png" src="img/gen2/%E6%AD%A3%E7%BE%A9%E3%81%AE%E7%9B%BE.png" class="icon-item">
+                    </td>
+                    <td>正義の盾</td>
+                    <td>防具</td>
+                    <td>持久</td>
+                    <td>200,000</td>
+                    <td>虚言の実 x2<br>
+                        魔水晶のかけら x1<br>
+                        真実の花 x1<br>
+                        勇者の盾 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="護獅子の証.png" src="img/gen2/%E8%AD%B7%E7%8D%85%E5%AD%90%E3%81%AE%E8%A8%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>護獅子の証</td>
+                    <td>防具</td>
+                    <td>獣属防</td>
+                    <td>500,000</td>
+                    <td>記憶石 x7<br>
+                        護獅子の毛 x5<br>
+                        重い槍 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="猛獅子の証.png" src="img/gen2/%E7%8C%9B%E7%8D%85%E5%AD%90%E3%81%AE%E8%A8%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>猛獅子の証</td>
+                    <td>武器</td>
+                    <td>獣属攻</td>
+                    <td>500,000</td>
+                    <td>記憶石 x7<br>
+                        猛獅子の毛 x5<br>
+                        神職装束 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="フラジェルム.png" src="img/gen2/%E3%83%95%E3%83%A9%E3%82%B8%E3%82%A7%E3%83%AB%E3%83%A0.png"
+                            class="icon-item">
+                    </td>
+                    <td>フラジェルム</td>
+                    <td>武器</td>
+                    <td>魔属攻</td>
+                    <td>500,000</td>
+                    <td>ピラミッドジェム x8<br>
+                        スカラベの宝石 x15<br>
+                        アンク x15</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ドラゴンファング.png"
+                            src="img/gen2/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%95%E3%82%A1%E3%83%B3%E3%82%B0.png"
+                            class="icon-item">
+                    </td>
+                    <td>ドラゴンファング</td>
+                    <td>武器</td>
+                    <td>龍属攻</td>
+                    <td>500,000</td>
+                    <td>蒸留水 x80<br>
+                        古竜の牙 x7<br>
+                        勇者の剣 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="曲名♪気まぐれ熱情.png"
+                            src="img/gen2/%E6%9B%B2%E5%90%8D%E2%99%AA%E6%B0%97%E3%81%BE%E3%81%90%E3%82%8C%E7%86%B1%E6%83%85.png"
+                            class="icon-item">
+                    </td>
+                    <td>曲名♪気まぐれ熱情
+                    </td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>エクスモンド x2<br>
+                        スカラベの宝石 x5<br>
+                        アンク x2<br>
+                        マタタビの実 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="翠色の宝箱.png" src="img/gen2/%E7%BF%A0%E8%89%B2%E3%81%AE%E5%AE%9D%E7%AE%B1.png"
+                            class="icon-item">
+                    </td>
+                    <td>翠色の宝箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>銀の塊 x30<br>
+                        壊れた長箱 x8<br>
+                        魔水晶のかけら x15
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="銀の塊.png" src="img/gen2/%E9%8A%80%E3%81%AE%E5%A1%8A.png" class="icon-item">
+                    </td>
+                    <td>銀の塊</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>濃厚粘土 x10<br>
+                        銀のかけら x5</td>
+                </tr>
+            </table>
+        </div>
+        <!--3分ミッドナイト-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="3分ミッドナイト.png"
+                        src="img/gen2/3%E5%88%86%E3%83%9F%E3%83%83%E3%83%89%E3%83%8A%E3%82%A4%E3%83%88.png"
+                        class="icon-shop">
+                    3分ミッドナイト
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="金のレイピア.png" src="img/gen2/%E9%87%91%E3%81%AE%E3%83%AC%E3%82%A4%E3%83%94%E3%82%A2.png"
+                            class="icon-item">
+                    </td>
+                    <td>金のレイピア</td>
+                    <td>武器</td>
+                    <td>五雨</td>
+                    <td>45,000</td>
+                    <td>金のかけら x2<br>
+                        雨と霧 x1<br>
+                        レイピア x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ムガルシューズ.png"
+                            src="img/gen2/%E3%83%A0%E3%82%AC%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>ムガルシューズ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>18,000</td>
+                    <td>硬い羽根 x10<br>
+                        グッドシューズ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ウインドスピアー.png"
+                            src="img/gen2/%E3%82%A6%E3%82%A4%E3%83%B3%E3%83%89%E3%82%B9%E3%83%94%E3%82%A2%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>ウインドスピアー</td>
+                    <td>武器</td>
+                    <td>五雨</td>
+                    <td>50,000</td>
+                    <td>天使の織物 x1<br>
+                        風と嵐 x1<br>
+                        重い槍 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="シルバーヘルム.png"
+                            src="img/gen2/%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%83%98%E3%83%AB%E3%83%A0.png"
+                            class="icon-item">
+                    </td>
+                    <td>シルバーヘルム</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>20,000</td>
+                    <td>銀の塊 x3<br>
+                        精密歯車 x3<br>
+                        天使の織物 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="グレイトソード.png"
+                            src="img/gen2/%E3%82%B0%E3%83%AC%E3%82%A4%E3%83%88%E3%82%BD%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>グレイトソード</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>25,000</td>
+                    <td>精密歯車 x5<br>
+                        グラニウム x1<br>
+                        勇者の剣 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ブルーシールド.png"
+                            src="img/gen2/%E3%83%96%E3%83%AB%E3%83%BC%E3%82%B7%E3%83%BC%E3%83%AB%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>ブルーシールド</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>25,000</td>
+                    <td>良質な木材 x8<br>
+                        クリスタル x10<br>
+                        勇者の盾 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ソウルイーター.png"
+                            src="img/gen2/%E3%82%BD%E3%82%A6%E3%83%AB%E3%82%A4%E3%83%BC%E3%82%BF%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>ソウルイーター</td>
+                    <td>武器</td>
+                    <td>強打</td>
+                    <td>60,000</td>
+                    <td>封印のお札 x5<br>
+                        グラニウム x2<br>
+                        魂を食らうもの x1<br>
+                        メガアックス x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="シルバーブーツ.png"
+                            src="img/gen2/%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%83%96%E3%83%BC%E3%83%84.png"
+                            class="icon-item">
+                    </td>
+                    <td>シルバーブーツ</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>30,000</td>
+                    <td>魔水晶のかけら x5<br>
+                        天使の織物 x2<br>
+                        ムガルシューズ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="曲名♪ポイズン.png"
+                            src="img/gen2/%E6%9B%B2%E5%90%8D%E2%99%AA%E3%83%9D%E3%82%A4%E3%82%BA%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>曲名♪ポイズン
+                    </td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>妖精の忘れ物 x5<br>
+                        煌く金属片 x5<br>
+                        麗しき琥珀 x5<br>
+                        幻獣曲第二章 x1<br>
+                        金色の鱗粉 x2
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="雨と霧.png" src="img/gen2/%E9%9B%A8%E3%81%A8%E9%9C%A7.png" class="icon-item">
+                    </td>
+                    <td>雨と霧</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>良質な魔法液 x2<br>
+                        雨の結晶 x10<br>
+                        千年樹の片木 x6</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="雪と氷.png" src="img/gen2/%E9%9B%AA%E3%81%A8%E6%B0%B7.png" class="icon-item">
+                    </td>
+                    <td>雪と氷</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>6,000</td>
+                    <td>良質な魔法液 x2<br>
+                        氷の結晶 x10<br>
+                        魔水晶のかけら x5</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="風と嵐.png" src="img/gen2/%E9%A2%A8%E3%81%A8%E5%B5%90.png" class="icon-item">
+                    </td>
+                    <td>風と嵐</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>7,000</td>
+                    <td>良質な魔法液 x2<br>
+                        風の結晶 x10<br>
+                        伍老花 x8</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="炎と闇.png" src="img/gen2/%E7%82%8E%E3%81%A8%E9%97%87.png" class="icon-item">
+                    </td>
+                    <td>炎と闇</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>8,000</td>
+                    <td>良質な魔法液 x2<br>
+                        火の結晶 x10<br>
+                        無名の遺言書 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="導きの秘箱.png" src="img/gen2/%E5%B0%8E%E3%81%8D%E3%81%AE%E7%A7%98%E7%AE%B1.png"
+                            class="icon-item">
+                    </td>
+                    <td>導きの秘箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>2,000,000</td>
+                    <td>導飾・ケテル x6<br>
+                        導飾・コクマー x6<br>
+                        導飾・ビナー x6</td>
+                </tr>
+            </table>
+        </div>
+        <!--深夜開店の館-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="深夜開店の館.png" src="img/gen2/%E6%B7%B1%E5%A4%9C%E9%96%8B%E5%BA%97%E3%81%AE%E9%A4%A8.png"
+                        class="icon-shop">
+                    深夜開店の館
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="デス・サイズ.png" src="img/gen2/%E3%83%87%E3%82%B9%E3%83%BB%E3%82%B5%E3%82%A4%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>デス・サイズ</td>
+                    <td>武器</td>
+                    <td>大撃</td>
+                    <td>1,000,000</td>
+                    <td>悪魔の鋭爪 x5<br>
+                        炎と闇 x1<br>
+                        金の塊 x2<br>
+                        死神の宝玉 x1<br>
+                        ブラッドジャム x1<br>
+                        アイスサイズ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="シルバーアーマー.png"
+                            src="img/gen2/%E3%82%B7%E3%83%AB%E3%83%90%E3%83%BC%E3%82%A2%E3%83%BC%E3%83%9E%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>シルバーアーマー</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>60,000</td>
+                    <td>真実の花 x5<br>
+                        炎と闇 x1<br>
+                        女神の透羽 x1<br>
+                        ソウルソフト x1<br>
+                        グレイトアーマー x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="エクスカリバー.png"
+                            src="img/gen2/%E3%82%A8%E3%82%AF%E3%82%B9%E3%82%AB%E3%83%AA%E3%83%90%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>エクスカリバー</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>1,200,000</td>
+                    <td>活性剤 x5<br>
+                        炎と闇 x1<br>
+                        エクスモンド x2<br>
+                        勇者の魂 x1<br>
+                        銘酒『昇り龍』 x1<br>
+                        グレイトソード x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="新型YOROI.png" src="img/gen2/%E6%96%B0%E5%9E%8BYOROI.png" class="icon-item">
+                    </td>
+                    <td>新型YOROI</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>80,000</td>
+                    <td>炎と闇 x1<br>
+                        英雄のブローチ x1<br>
+                        エクスモンド x2<br>
+                        ソウルソフト x1<br>
+                        シルバーブーツ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="月替わり宝箱.png" src="img/gen2/%E6%9C%88%E6%9B%BF%E3%82%8F%E3%82%8A%E5%AE%9D%E7%AE%B1.png"
+                            class="icon-item">
+                    </td>
+                    <td>月替わり宝箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>黄金の引換券 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="死神の時計.png" src="img/gen2/%E6%AD%BB%E7%A5%9E%E3%81%AE%E6%99%82%E8%A8%88.png"
+                            class="icon-item">
+                    </td>
+                    <td>死神の時計</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>8,000</td>
+                    <td>
+                        黄金の引換券 x8</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="緋色の宝箱.png" src="img/gen2/%E7%B7%8B%E8%89%B2%E3%81%AE%E5%AE%9D%E7%AE%B1.png"
+                            class="icon-item">
+                    </td>
+                    <td>緋色の宝箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,000</td>
+                    <td>
+                        黄金の引換券 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="神託の巻物.png" src="img/gen2/%E7%A5%9E%E8%A8%97%E3%81%AE%E5%B7%BB%E7%89%A9.png"
+                            class="icon-item">
+                    </td>
+                    <td>神託の巻物</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>20,000</td>
+                    <td>
+                        黄金の引換券 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="金の塊.png" src="img/gen2/%E9%87%91%E3%81%AE%E5%A1%8A.png" class="icon-item">
+                    </td>
+                    <td>金の塊</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>2,000</td>
+                    <td>朱色の玉 x10<br>
+                        金のかけら x5</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="幻の魔法液.png" src="img/gen2/%E5%B9%BB%E3%81%AE%E9%AD%94%E6%B3%95%E6%B6%B2.png"
+                            class="icon-item">
+                    </td>
+                    <td>幻の魔法液</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>200,000</td>
+                    <td>良質な魔法液 x10<br>
+                        精霊の鱗粉 x5<br>
+                        女神の透羽 x2<br>
+                        エクスモンド x2</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--咲き誇る王族の店-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="咲き誇る王族の店.png"
+                        src="img/gen2/%E5%92%B2%E3%81%8D%E8%AA%87%E3%82%8B%E7%8E%8B%E6%97%8F%E3%81%AE%E5%BA%97.png"
+                        class="icon-shop">
+                    咲き誇る王族の店
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="山神の面.png" src="img/gen2/%E5%B1%B1%E7%A5%9E%E3%81%AE%E9%9D%A2.png" class="icon-item">
+                    </td>
+                    <td>山神の面</td>
+                    <td>防具</td>
+                    <td>鉄壁</td>
+                    <td>1,500,000</td>
+                    <td>炎と闇 x30<br>
+                        千年樹の片木 x3<br>
+                        神秘の魔法薬 x2<br>
+                        ブラッドジャム x10<br>
+                        シルバーヘルム x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="鴉扇.png" src="img/gen2/%E9%B4%89%E6%89%87.png" class="icon-item">
+                    </td>
+                    <td>鴉扇</td>
+                    <td>武器</td>
+                    <td>突風</td>
+                    <td>2,000,000</td>
+                    <td>深紅の柔毛 x30<br>
+                        風と嵐 x20<br>
+                        暗黒龍の魂 x5<br>
+                        神秘の魔法薬 x3<br>
+                        ウインドスピアー x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ウィングブーツ.png"
+                            src="img/gen2/%E3%82%A6%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%96%E3%83%BC%E3%83%84.png"
+                            class="icon-item">
+                    </td>
+                    <td>ウィングブーツ</td>
+                    <td>防具</td>
+                    <td>底力</td>
+                    <td>1,500,000</td>
+                    <td>伍老花 x30<br>
+                        精霊の麟粉 x5<br>
+                        無名の遺言 x5<br>
+                        神秘の魔法薬 x2<br>
+                        シルバーブーツ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="バルゴの祝福.png" src="img/gen2/%E3%83%90%E3%83%AB%E3%82%B4%E3%81%AE%E7%A5%9D%E7%A6%8F.png"
+                            class="icon-item">
+                    </td>
+                    <td>バルゴの祝福</td>
+                    <td>武器</td>
+                    <td>癒唄</td>
+                    <td>2,300,000</td>
+                    <td>真実の花 x30<br>
+                        天使の織物 x20<br>
+                        英雄のブローチ x3<br>
+                        神秘の魔法薬 x3<br>
+                        マジックスタッフ x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="獅子砕牙.png" src="img/gen2/%E7%8D%85%E5%AD%90%E7%A0%95%E7%89%99.png" class="icon-item">
+                    </td>
+                    <td>獅子砕牙</td>
+                    <td>武器</td>
+                    <td>獣属攻</td>
+                    <td>2,500,000</td>
+                    <td>神秘の魔法薬 x3<br>
+                        記憶石 x10<br>
+                        幻影の獅牙 x8<br>
+                        グレイトソード x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ケリュケイオン.png"
+                            src="img/gen2/%E3%82%B1%E3%83%AA%E3%83%A5%E3%82%B1%E3%82%A4%E3%82%AA%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>ケリュケイオン</td>
+                    <td>武器</td>
+                    <td>魔属攻</td>
+                    <td>2,500,000</td>
+                    <td>神秘の魔法薬 x3<br>
+                        月の胸飾り x3<br>
+                        フラジェルム x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="竜族の紋章.png" src="img/gen2/%E7%AB%9C%E6%97%8F%E3%81%AE%E7%B4%8B%E7%AB%A0.png"
+                            class="icon-item">
+                    </td>
+                    <td>竜族の紋章</td>
+                    <td>武器</td>
+                    <td>龍属攻</td>
+                    <td>2,500,000</td>
+                    <td>蒼龍の上鱗 x10<br>
+                        竜の片鱗 x10<br>
+                        ドラゴンファング x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="曲名♪栄華の毒砂.png"
+                            src="img/gen2/%E6%9B%B2%E5%90%8D%E2%99%AA%E6%A0%84%E8%8F%AF%E3%81%AE%E6%AF%92%E7%A0%82.png"
+                            class="icon-item">
+                    </td>
+                    <td>曲名♪栄華の毒砂
+                    </td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>650,000</td>
+                    <td>魂を食らうもの x2<br>
+                        魅惑の石 x1<br>
+                        本の残骸 x2<br>
+                        ピラミッドジェム x8<br>
+                        月の胸飾り x1<br>
+                        幻獣曲第一章 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="神秘の魔法薬.png" src="img/gen2/%E7%A5%9E%E7%A7%98%E3%81%AE%E9%AD%94%E6%B3%95%E8%96%AC.png"
+                            class="icon-item">
+                    </td>
+                    <td>神秘の魔法薬</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>活性剤 x5<br>
+                        魔水晶のかけら x7<br>
+                        幻の魔法薬 x7<br>
+                        勇者の魂 x5<br>
+                        ソウルソフト x3</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--天月神楽-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="天月神楽.png" src="img/gen2/%E5%A4%A9%E6%9C%88%E7%A5%9E%E6%A5%BD.png" class="icon-shop">
+                    天月神楽
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="エンドオブルイン.png"
+                            src="img/gen2/%E3%82%A8%E3%83%B3%E3%83%89%E3%82%AA%E3%83%96%E3%83%AB%E3%82%A4%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>エンドオブルイン</td>
+                    <td>武器</td>
+                    <td>高揚</td>
+                    <td>3,000,000</td>
+                    <td>聖杯 x1<br>
+                        リリジェンアーク x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="青藍の巫女服.png" src="img/gen2/%E9%9D%92%E8%97%8D%E3%81%AE%E5%B7%AB%E5%A5%B3%E6%9C%8D.png"
+                            class="icon-item">
+                    </td>
+                    <td>青藍の巫女服</td>
+                    <td>防具</td>
+                    <td>覇王</td>
+                    <td>3,000,000</td>
+                    <td>支配者の証 x1<br>
+                        山神の面 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="太古の宝箱.png" src="img/gen2/%E5%A4%AA%E5%8F%A4%E3%81%AE%E5%AE%9D%E7%AE%B1.png"
+                            class="icon-item">
+                    </td>
+                    <td>太古の宝箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>1,500,000</td>
+                    <td>
+                        古汚い宝箱 x10<br>
+                        神秘の魔法薬 x8<br>
+                        千年樹の片木 x32<br>
+                        竜の片鱗 x1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 属性別ショップ -->
+    <div class="container-fluid">
+        <h3>属性別ショップ</h3>
+        <!--木葉隠れ・狐火-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="木葉隠れ・狐火.png"
+                        src="img/gen2/%E6%9C%A8%E8%91%89%E9%9A%A0%E3%82%8C%E3%83%BB%E7%8B%90%E7%81%AB.png"
+                        class="icon-shop">
+                    木葉隠れ・狐火
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ねこパンチ.png" src="img/gen2/%E3%81%AD%E3%81%93%E3%83%91%E3%83%B3%E3%83%81.png"
+                            class="icon-item">
+                    </td>
+                    <td>ねこパンチ</td>
+                    <td>武器</td>
+                    <td>獣属攻</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        猛獣の足跡 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ねこシューズ.png" src="img/gen2/%E3%81%AD%E3%81%93%E3%82%B7%E3%83%A5%E3%83%BC%E3%82%BA.png"
+                            class="icon-item">
+                    </td>
+                    <td>ねこシューズ</td>
+                    <td>防具</td>
+                    <td>獣属防</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        猛獣の足跡 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="獣属攻のカード.png"
+                            src="img/gen2/%E7%8D%A3%E5%B1%9E%E6%94%BB%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>獣属攻のカード</td>
+                    <td>特殊</td>
+                    <td>獣属攻</td>
+                    <td>1,500,000</td>
+                    <td>猛獣の足跡 x5<br>
+                        幻の魔法薬 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="けものこまち.png" src="img/gen2/%E3%81%91%E3%82%82%E3%81%AE%E3%81%93%E3%81%BE%E3%81%A1.png"
+                            class="icon-item">
+                    </td>
+                    <td>けものこまち</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>マタタビの実 x5<br>
+                        合成獣の石盤 x4<br>
+                        巨大鳥の羽根 x3<br>
+                        猛獣ステーキ x2<br>
+                        きゅうり x1
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--悪魔の隠れ家-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="悪魔の隠れ家.png" src="img/gen2/%E6%82%AA%E9%AD%94%E3%81%AE%E9%9A%A0%E3%82%8C%E5%AE%B6.png"
+                        class="icon-shop">
+                    悪魔の隠れ家
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="小悪魔ナイフ.png" src="img/gen2/%E5%B0%8F%E6%82%AA%E9%AD%94%E3%83%8A%E3%82%A4%E3%83%95.png"
+                            class="icon-item">
+                    </td>
+                    <td>小悪魔ナイフ</td>
+                    <td>武器</td>
+                    <td>魔属攻</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        悪魔の鋭爪 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="悪魔の仮面.png" src="img/gen2/%E6%82%AA%E9%AD%94%E3%81%AE%E4%BB%AE%E9%9D%A2.png"
+                            class="icon-item">
+                    </td>
+                    <td>悪魔の仮面</td>
+                    <td>防具</td>
+                    <td>魔属防</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        悪魔の鋭爪 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="魔属攻のカード.png"
+                            src="img/gen2/%E9%AD%94%E5%B1%9E%E6%94%BB%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>魔属攻のカード</td>
+                    <td>特殊</td>
+                    <td>魔属攻</td>
+                    <td>1,500,000</td>
+                    <td>悪魔の鋭爪 x5<br>
+                        幻の魔法薬 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ブラッドジャム.png"
+                            src="img/gen2/%E3%83%96%E3%83%A9%E3%83%83%E3%83%89%E3%82%B8%E3%83%A3%E3%83%A0.png"
+                            class="icon-item">
+                    </td>
+                    <td>ブラッドジャム</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>汚い古水 x5<br>
+                        臭い毒液 x4<br>
+                        創造するこころ x3<br>
+                        邪悪な羽根 x2<br>
+                        具現化した悪夢 x1
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--スピリッツランド-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="スピリッツランド.png"
+                        src="img/gen2/%E3%82%B9%E3%83%94%E3%83%AA%E3%83%83%E3%83%84%E3%83%A9%E3%83%B3%E3%83%89.png"
+                        class="icon-shop">
+                    スピリッツランド
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="猛獣用ムチ.png" src="img/gen2/%E7%8C%9B%E7%8D%A3%E7%94%A8%E3%83%A0%E3%83%81.png"
+                            class="icon-item">
+                    </td>
+                    <td>猛獣用ムチ</td>
+                    <td>武器</td>
+                    <td>霊属攻</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        精霊の麟粉 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="精霊の首飾り.png" src="img/gen2/%E7%B2%BE%E9%9C%8A%E3%81%AE%E9%A6%96%E9%A3%BE%E3%82%8A.png"
+                            class="icon-item">
+                    </td>
+                    <td>精霊の首飾り</td>
+                    <td>防具</td>
+                    <td>霊属防</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        精霊の麟粉 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="霊属攻のカード.png"
+                            src="img/gen2/%E9%9C%8A%E5%B1%9E%E6%94%BB%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>霊属攻のカード</td>
+                    <td>特殊</td>
+                    <td>霊属攻</td>
+                    <td>1,500,000</td>
+                    <td>精霊の麟粉 x5<br>
+                        幻の魔法液 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ソウルソフト.png" src="img/gen2/%E3%82%BD%E3%82%A6%E3%83%AB%E3%82%BD%E3%83%95%E3%83%88.png"
+                            class="icon-item">
+                    </td>
+                    <td>ソウルソフト</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>サボテンの乾皮 x5<br>
+                        草模様の精霊石 x4<br>
+                        霊力の源石 x3<br>
+                        大海の精霊石 x2<br>
+                        風を司る力 x1
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--竜族のほこら-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="竜族のほこら.png" src="img/gen2/%E7%AB%9C%E6%97%8F%E3%81%AE%E3%81%BB%E3%81%93%E3%82%89.png"
+                        class="icon-shop">
+                    竜族のほこら
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="ドラゴンクロー.png"
+                            src="img/gen2/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%82%AF%E3%83%AD%E3%83%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>ドラゴンクロー</td>
+                    <td>武器</td>
+                    <td>龍属攻</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        蒼龍の上鱗 x2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="竜鱗のローブ.png" src="img/gen2/%E7%AB%9C%E9%B1%97%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>竜鱗のローブ</td>
+                    <td>防具</td>
+                    <td>龍属防</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        蒼龍の上鱗 x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="龍属攻のカード.png"
+                            src="img/gen2/%E9%BE%8D%E5%B1%9E%E6%94%BB%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>龍属攻のカード</td>
+                    <td>特殊</td>
+                    <td>龍属攻</td>
+                    <td>1,500,000</td>
+                    <td>蒼龍の上鱗 x5<br>
+                        幻の魔法液 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="銘酒『昇り龍』.png"
+                            src="img/gen2/%E9%8A%98%E9%85%92%E3%80%8E%E6%98%87%E3%82%8A%E9%BE%8D%E3%80%8F.png"
+                            class="icon-item">
+                    </td>
+                    <td>銘酒『昇り龍』</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>蒼竜の上鱗 x2<br>
+                        黒炎の結晶 x2<br>
+                        翼竜の置物 x3<br>
+                        巨蛇竜の細胞 x1
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--幻の森の奥地-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="幻の森の奥地.png" src="img/gen2/%E5%B9%BB%E3%81%AE%E6%A3%AE%E3%81%AE%E5%A5%A5%E5%9C%B0.png"
+                        class="icon-shop">
+                    幻の森の奥地
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="妖刀『龍殺し』.png"
+                            src="img/gen2/%E5%A6%96%E5%88%80%E3%80%8E%E9%BE%8D%E6%AE%BA%E3%81%97%E3%80%8F.png"
+                            class="icon-item">
+                    </td>
+                    <td>妖刀『龍殺し』</td>
+                    <td>武器</td>
+                    <td>地属攻</td>
+                    <td>1,000,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        星のかけら x4<br>
+                        地盤ドロップ x1<br>
+                        銘酒『昇り龍』 x1<br>
+                        日本刀 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="土神様の衣.png" src="img/gen2/%E5%9C%9F%E7%A5%9E%E6%A7%98%E3%81%AE%E8%A1%A3.png"
+                            class="icon-item">
+                    </td>
+                    <td>土神様の衣</td>
+                    <td>防具</td>
+                    <td>地属防</td>
+                    <td>500,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        星のかけら x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="地属攻のカード.png"
+                            src="img/gen2/%E5%9C%B0%E5%B1%9E%E6%94%BB%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>地属攻のカード</td>
+                    <td>特殊</td>
+                    <td>地属攻</td>
+                    <td>2,000,000</td>
+                    <td>星のかけら x5<br>
+                        幻の魔法液 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="地盤ドロップ.png" src="img/gen2/%E5%9C%B0%E7%9B%A4%E3%83%89%E3%83%AD%E3%83%83%E3%83%97.png"
+                            class="icon-item">
+                    </td>
+                    <td>地盤ドロップ</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>蟲プリン x4<br>
+                        マナの塊 x3<br>
+                        深海の結晶 x2<br>
+                        大自然の力 x1
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--流転の休息地-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="流転の休息地.png" src="img/gen2/%E6%B5%81%E8%BB%A2%E3%81%AE%E4%BC%91%E6%81%AF%E5%9C%B0.png"
+                        class="icon-shop">
+                    流転の休息地
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="満天の寝帽.png" src="img/gen2/%E6%BA%80%E5%A4%A9%E3%81%AE%E5%AF%9D%E5%B8%BD.png"
+                            class="icon-item">
+                    </td>
+                    <td>満天の寝帽</td>
+                    <td>防具</td>
+                    <td>無属防</td>
+                    <td>1,000,000</td>
+                    <td>活性剤 x3<br>
+                        深紅の柔毛 x3<br>
+                        味覚のオペラ x10<br>
+                        純真エプロン x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="味覚のオペラ.png" src="img/gen2/%E5%91%B3%E8%A6%9A%E3%81%AE%E3%82%AA%E3%83%9A%E3%83%A9.png"
+                            class="icon-item">
+                    </td>
+                    <td>味覚のオペラ</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>予言書 x5<br>
+                        幻と影の種 x1<br>
+                        真の救世主 x4<br>
+                        鎮魂の力 x2<br>
+                        幻獣の繭 x3
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 曜日限定ショップ -->
+    <div class="container-fluid">
+        <h3>曜日限定ショップ</h3>
+
+        <!--月曜日ショップ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="月曜日ショップ.png"
+                        src="img/gen2/%E6%9C%88%E6%9B%9C%E6%97%A5%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97.png"
+                        class="icon-shop">
+                    月曜日ショップ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="黄丹の箱.png" src="img/gen2/%E9%BB%84%E4%B8%B9%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>黄丹の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>咆哮の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="黄丹の箱.png" src="img/gen2/%E9%BB%84%E4%B8%B9%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>黄丹の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>20,000</td>
+                    <td>禍根の毛玉 x5</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--水曜日ショップ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="水曜日ショップ.png"
+                        src="img/gen2/%E6%B0%B4%E6%9B%9C%E6%97%A5%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97.png"
+                        class="icon-shop">
+                    水曜日ショップ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白群の箱.png" src="img/gen2/%E7%99%BD%E7%BE%A4%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>白群の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>妖精の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白群の箱.png" src="img/gen2/%E7%99%BD%E7%BE%A4%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>白群の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>20,000</td>
+                    <td>朽ちた花弁 x5</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--金曜日ショップ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="金曜日ショップ.png"
+                        src="img/gen2/%E9%87%91%E6%9B%9C%E6%97%A5%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97.png"
+                        class="icon-shop">
+                    金曜日ショップ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>曜日</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="紫紺の箱.png" src="img/gen2/%E7%B4%AB%E7%B4%BA%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>紫紺の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>幻惑の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="紫紺の箱.png" src="img/gen2/%E7%B4%AB%E7%B4%BA%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>紫紺の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>20,000</td>
+                    <td>闇のかけら x5</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--日曜日ショップ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    <img alt="日曜日ショップ.png"
+                        src="img/gen2/%E6%97%A5%E6%9B%9C%E6%97%A5%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97.png"
+                        class="icon-shop">
+                    日曜日ショップ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>曜日</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="コランダム.png" src="img/gen2/%E3%82%B3%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0.png"
+                            class="icon-item">
+                    </td>
+                    <td>コランダム</td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>1,300,000</td>
+                    <td>綿毛草 x10<br>
+                        唐花 x10<br>
+                        雫の実 x10<br>
+                        メガアックス x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="キグルミ【九】アイコン.png"
+                            src="img/gen2/%E3%82%AD%E3%82%B0%E3%83%AB%E3%83%9F%E3%80%90%E4%B9%9D%E3%80%91%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>キグルミ【九】</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>伍老花 x20<br>
+                        炎と闇 x10<br>
+                        綿毛草 x5<br>
+                        ねこシューズ x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="キグルミ【吸】アイコン.png"
+                            src="img/gen2/%E3%82%AD%E3%82%B0%E3%83%AB%E3%83%9F%E3%80%90%E5%90%B8%E3%80%91%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>キグルミ【吸】</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>魔水晶のかけら x20<br>
+                        勇者の魂 x10<br>
+                        唐花 x5<br>
+                        悪魔の仮面 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="キグルミ【海】アイコン.png"
+                            src="img/gen2/%E3%82%AD%E3%82%B0%E3%83%AB%E3%83%9F%E3%80%90%E6%B5%B7%E3%80%91%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>キグルミ【海】</td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>天使の織物 x20<br>
+                        女神の透羽 x10<br>
+                        雫の実 x5<br>
+                        精霊の首飾り x1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ギルドトレードショップ -->
+    <div class="container-fluid">
+        <h3>ギルドトレードショップ</h3>
+        <!--ギルドトレードショップ-->
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-sm caption-top">
+                <caption>
+                    ギルドトレードショップ
+                </caption>
+                <thead class="bg-secondary">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>アイテム名</th>
+                        <th>種類</th>
+                        <th>アビ</th>
+                        <th>費用(gm)</th>
+                        <th>材料(個数)</th>
+                </thead>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【魔界樹】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E9%AD%94%E7%95%8C%E6%A8%B9%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【魔界樹】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>伍老花 x10<br>
+                        雨と霧 x5<br>
+                        花札『桜』 x1<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【神蔵】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E7%A5%9E%E8%94%B5%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【神蔵】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>封印のお札 x10<br>
+                        雪と氷 x5<br>
+                        花札『月』 x1<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="チューヤのお礼.png"
+                            src="img/gen2/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%A4%E3%81%AE%E3%81%8A%E7%A4%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>チューヤのお礼</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>あんパン x15</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="アポロンのお礼.png"
+                            src="img/gen2/%E3%82%A2%E3%83%9D%E3%83%AD%E3%83%B3%E3%81%AE%E3%81%8A%E7%A4%BC.png"
+                            class="icon-item">
+                    </td>
+                    <td>アポロンのお礼</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>おはじき x10<br>
+                        メロンパン x10</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="金魚袋.png" src="img/gen2/%E9%87%91%E9%AD%9A%E8%A2%8B.png" class="icon-item">
+                    </td>
+                    <td>金魚袋</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>10,000</td>
+                    <td>魔法の実 x10<br>
+                        絶妙焼き魚 x10<br>
+                        四葉のクローバー x10</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【勇者】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E5%8B%87%E8%80%85%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【勇者】<br><small>勇者の墓地</small></td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>100,000</td>
+                    <td>風と嵐 x5<br>
+                        無名の遺言書 x3<br>
+                        暗黒龍の魂 x2<br>
+                        花札『盃』 x1<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="灯籠.png" src="img/gen2/%E7%81%AF%E7%B1%A0.png" class="icon-item">
+                    </td>
+                    <td>灯籠 <br><small>隠しダンジョン進入効果：お祭り会場 ⇒ 灯籠流しの川</small></td>
+                    <td>装備</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>リンゴ飴 x8<br>
+                        金魚袋 x3<br>
+                        冷やしラムネ x5<br>
+                        おはじき x15</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【お祭り】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E3%81%8A%E7%A5%AD%E3%82%8A%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【お祭り】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>虚言の実 x15<br>
+                        深紅の柔毛 x10<br>
+                        金魚袋 x3<br>
+                        おはじき x3<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="曲名♪天雲の勇魚.png"
+                            src="img/gen2/%E6%9B%B2%E5%90%8D%E2%99%AA%E5%A4%A9%E9%9B%B2%E3%81%AE%E5%8B%87%E9%AD%9A.png"
+                            class="icon-item">
+                    </td>
+                    <td>曲名♪天雲の勇魚</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>200,000</td>
+                    <td>おはじき x10<br>
+                        太陽の微笑み x25<br>
+                        帝王イカ x25<br>
+                        幻獣曲第二章 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="黄丹の箱.png" src="img/gen2/%E9%BB%84%E4%B8%B9%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>黄丹の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>咆哮の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白群の箱.png" src="img/gen2/%E7%99%BD%E7%BE%A4%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>白群の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>妖精の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="紫紺の箱.png" src="img/gen2/%E7%B4%AB%E7%B4%BA%E3%81%AE%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>紫紺の箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>5,000</td>
+                    <td>幻惑の唄 x50</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="白の歯車.png" src="img/gen2/%E7%99%BD%E3%81%AE%E6%AD%AF%E8%BB%8A.png" class="icon-item">
+                    </td>
+                    <td>白の歯車</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>10,000</td>
+                    <td>どこかのネジ x30<br>
+                        幻獣ミルクx30<br>
+                        約束の指輪 x30</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【夕焼け】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E5%A4%95%E7%84%BC%E3%81%91%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【夕焼け】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>天使の織物 x3<br>
+                        炎と闇 x5<br>
+                        女神の透羽 x5<br>
+                        花札『菖蒲』 x1<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="身代わりの鎖.png" src="img/gen2/%E8%BA%AB%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AE%E9%8E%96.png"
+                            class="icon-item">
+                    </td>
+                    <td>身代わりの鎖</td>
+                    <td>収集</td>
+                    <td>-</td>
+                    <td>10,000</td>
+                    <td>丈夫な紐 x30<br>
+                        砥石 x30<br>
+                        鋼鉄のかけら x30</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="過ちの杖.png" src="img/gen2/%E9%81%8E%E3%81%A1%E3%81%AE%E6%9D%96.png" class="icon-item">
+                    </td>
+                    <td>過ちの杖 <br><small>隠しダンジョン進入効果：狂信者の隠れ里 ⇒ 暴君の爪跡</small></td>
+                    <td>武器</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>雨と霧 x20<br>
+                        花札「桜」 x2<br>
+                        魔術師の手記 x30<br>
+                        身代わりの鎖 x20</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="お祭り箱.png" src="img/gen2/%E3%81%8A%E7%A5%AD%E3%82%8A%E7%AE%B1.png" class="icon-item">
+                    </td>
+                    <td>お祭り箱</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>赤の引換券 x10<br>
+                        青の引換券 x10<br>
+                        金魚袋 x1<br>
+                        おはじき x3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="逆周りの時計.png" src="img/gen2/%E9%80%86%E5%91%A8%E3%82%8A%E3%81%AE%E6%99%82%E8%A8%88.png"
+                            class="icon-item">
+                    </td>
+                    <td>逆周りの時計 <br><small>隠しダンジョン進入効果：朽ちた都 ⇒ 輝きの都</small></td>
+                    <td>防具</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>真実の花 x20<br>
+                        花札「盃」 x2<br>
+                        朽ちた花弁 x30<br>
+                        白の歯車 x20</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="リリジェンアーク.png"
+                            src="img/gen2/%E3%83%AA%E3%83%AA%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AF.png"
+                            class="icon-item">
+                    </td>
+                    <td>リリジェンアーク</td>
+                    <td>武器</td>
+                    <td>高揚</td>
+                    <td>2,000,000</td>
+                    <td>蒼龍の上鱗 x70<br>
+                        勇者の魂 x20<br>
+                        清浄の百合 x20<br>
+                        聖なる竜鱗 x10<br>
+                        エクスカリバー x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【朽ちた】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E6%9C%BD%E3%81%A1%E3%81%9F%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【朽ちた】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>300,000</td>
+                    <td>英雄のブローチ x2<br>
+                        勇者の魂 x5<br>
+                        花札『菖蒲』 x1<br>
+                        白の歯車 x3<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="火ノ迦具土.png" src="img/gen2/%E7%81%AB%E3%83%8E%E8%BF%A6%E5%85%B7%E5%9C%9F.png"
+                            class="icon-item">
+                    </td>
+                    <td>火ノ迦具土</td>
+                    <td>武器</td>
+                    <td>一斉</td>
+                    <td>3,000,000</td>
+                    <td>暗黒龍の魂 x70<br>
+                        本の残骸 x30<br>
+                        闇の逆鱗 x15<br>
+                        闇のかけら x99<br>
+                        日本刀 x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="オブマスカレード.png"
+                            src="img/gen2/%E3%82%AA%E3%83%96%E3%83%9E%E3%82%B9%E3%82%AB%E3%83%AC%E3%83%BC%E3%83%89.png"
+                            class="icon-item">
+                    </td>
+                    <td>オブマスカレード</td>
+                    <td>防具</td>
+                    <td>悪戯</td>
+                    <td>2,000,000</td>
+                    <td>神秘の魔法薬 x5<br>
+                        ブラッドジャム x15<br>
+                        花カボチャ x20<br>
+                        おはじき x15<br>
+                        さすらいマント x1
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="トビラ【狂信】.png"
+                            src="img/gen2/%E3%83%88%E3%83%93%E3%83%A9%E3%80%90%E7%8B%82%E4%BF%A1%E3%80%91.png"
+                            class="icon-item">
+                    </td>
+                    <td>トビラ【狂信】</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>400,000</td>
+                    <td>魂を食らうもの x1<br>
+                        死神の宝玉 x1<br>
+                        花札『月』 x2<br>
+                        身代わりの鎖 x3<br>
+                        閉じた扉 x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="都牟刈大刀.png" src="img/gen2/%E9%83%BD%E7%89%9F%E5%88%88%E5%A4%A7%E5%88%80.png"
+                            class="icon-item">
+                    </td>
+                    <td>都牟刈大刀</td>
+                    <td>武器</td>
+                    <td>一斉</td>
+                    <td>1,500,000</td>
+                    <td>鋼鉄の塊 x50<br>
+                        銀の塊 x30<br>
+                        グラニウム x30<br>
+                        金の塊 x10<br>
+                        おはじき x30<br>
+                        金のレイピア x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="キグルミ【蛹】アイコン.png"
+                            src="img/gen2/%E3%82%AD%E3%82%B0%E3%83%AB%E3%83%9F%E3%80%90%E8%9B%B9%E3%80%91%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.png"
+                            class="icon-item">
+                    </td>
+                    <td>キグルミ【蛹】</td>
+                    <td>装備</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>おはじき x30<br>
+                        旅立ちの剣 x3<br>
+                        悪魔の心 x3<br>
+                        思い出の切れ端 x3<br>
+                        幻獣の繭 x4<br>
+                        ムガルシューズ x1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img alt="曲名♪世界の再生.png"
+                            src="img/gen2/%E6%9B%B2%E5%90%8D%E2%99%AA%E4%B8%96%E7%95%8C%E3%81%AE%E5%86%8D%E7%94%9F.png"
+                            class="icon-item">
+                    </td>
+                    <td>曲名♪世界の再生</td>
+                    <td>特殊</td>
+                    <td>-</td>
+                    <td>500,000</td>
+                    <td>終末コルネット x8<br>
+                        幻獣曲第二章 x3</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="gotop" class="opacity-50 py-1 px-2">
+        <a href="#"><img title="Back To Top" src="img/triangle.svg" alt="Back To Top"></a>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <div class="col mx-auto text-center">
+                <span class="text-muted"><small>Copyright &copy; 幻獣物語２wiki. All Rights Reserved.</small></span>
+                <br>
+                <span class="text-muted"><small>co. david</small></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+
+</html>
