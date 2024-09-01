@@ -84,10 +84,11 @@ function handleCardClick(event: MouseEvent) {
   const deckIndex = Number.parseInt(
     selectedCell.getAttribute('data-deck-index') || ''
   );
+  const lastone = selectedCard;
   selectedCard = deck[deckIndex];
   remainingCards = remainingCards.filter((card) => card != selectedCard);
-  
-  if (!gameHistory.some((x) => x.selectedCard?.rank === selectedCard?.rank)) {
+  // 跟前一次比不一樣才紀錄次數
+  if (lastone?.rank !== selectedCard.rank) {
     console.log(`count++ ${selectedCard.toString()}`);
     clickCount++;
   }
