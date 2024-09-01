@@ -86,7 +86,11 @@ function handleCardClick(event: MouseEvent) {
   );
   selectedCard = deck[deckIndex];
   remainingCards = remainingCards.filter((card) => card != selectedCard);
-  clickCount++;
+  
+  if (!gameHistory.some((x) => x.selectedCard?.rank === selectedCard?.rank)) {
+    console.log(`count++ ${selectedCard.toString()}`);
+    clickCount++;
+  }
 
   let high = 0,
     low = 0,
@@ -136,7 +140,6 @@ const resetButton = document.querySelector<HTMLButtonElement>('button')!;
 resetButton.onclick = () => resetGame();
 
 function createHistoryItem(move: GameHistory | string): HTMLLIElement {
-  console.log(move.toString());
   if (typeof move !== 'string') {
     const total = move.high + move.low;
     const rateH = Math.round((move.high / total) * 100);
@@ -145,12 +148,12 @@ function createHistoryItem(move: GameHistory | string): HTMLLIElement {
     data.push(`${move.selectedCard}`);
     data.push(
       rateH >= rateL
-        ? `<b>HIGH: ${move.high} (${rateH}%)</b>`
+        ? `<b class='high' style='opacity: ${rateH / 100};'>HIGH: ${move.high} (${rateH}%)</b>`
         : `HIGH: ${move.high} (${rateH}%)`
     );
     data.push(
       rateL >= rateH
-        ? `<b>LOW: ${move.low} (${rateL}%)</b>`
+        ? `<b class='low' style='opacity: ${rateL / 100};'>LOW: ${move.low} (${rateL}%)</b>`
         : `LOW: ${move.low} (${rateL}%)`
     );
     data.push(`DRAW: ${move.draw}`);

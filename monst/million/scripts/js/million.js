@@ -65,7 +65,10 @@ function handleCardClick(event) {
     const deckIndex = Number.parseInt(selectedCell.getAttribute('data-deck-index') || '');
     selectedCard = deck[deckIndex];
     remainingCards = remainingCards.filter((card) => card != selectedCard);
-    clickCount++;
+    if (!gameHistory.some((x) => x.selectedCard?.rank === selectedCard?.rank)) {
+        console.log(`count++ ${selectedCard.toString()}`);
+        clickCount++;
+    }
     let high = 0, low = 0, draw = 0;
     for (const card of remainingCards) {
         const rank = card.rank;
@@ -107,7 +110,6 @@ function resetGame() {
 const resetButton = document.querySelector('button');
 resetButton.onclick = () => resetGame();
 function createHistoryItem(move) {
-    console.log(move.toString());
     if (typeof move !== 'string') {
         const total = move.high + move.low;
         const rateH = Math.round((move.high / total) * 100);
@@ -115,10 +117,10 @@ function createHistoryItem(move) {
         const data = [];
         data.push(`${move.selectedCard}`);
         data.push(rateH >= rateL
-            ? `<b>HIGH: ${move.high} (${rateH}%)</b>`
+            ? `<b class='high' style='opacity: ${rateH / 100};'>HIGH: ${move.high} (${rateH}%)</b>`
             : `HIGH: ${move.high} (${rateH}%)`);
         data.push(rateL >= rateH
-            ? `<b>LOW: ${move.low} (${rateL}%)</b>`
+            ? `<b class='low' style='opacity: ${rateL / 100};'>LOW: ${move.low} (${rateL}%)</b>`
             : `LOW: ${move.low} (${rateL}%)`);
         data.push(`DRAW: ${move.draw}`);
         // move = `${move.selectedCard}, HIGH: ${move.high} (${rateH}%), LOW: ${move.low} (${rateL}%), DRAW: ${move.draw}`;
